@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Focus Mode",
+  "version": "1.0.0",
+  "description": "Distraction-free YouTube: eliminates recommendations, home feed clutter, Shorts, and related suggestions while keeping search and playback fast and focused.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "YouTube Focus Mode"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "css": [
+        "styles/global.css",
+        "styles/homepage.css",
+        "styles/search.css",
+        "styles/watch.css"
+      ],
+      "js": [
+        "content/youtube-detector.js",
+        "content/blocker.js",
+        "content/observer.js",
+        "content/page-handler.js",
+        "content/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

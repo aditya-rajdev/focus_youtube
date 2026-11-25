@@ -1,0 +1,212 @@
+/**
+ * YouTube Focus Mode - Global Styles
+ * Applied across YouTube when Focus Mode is enabled.
+ */
+
+:root {
+  --yfm-primary: #6366f1;
+  --yfm-primary-hover: #4f46e5;
+  --yfm-primary-glow: rgba(99, 102, 241, 0.25);
+  --yfm-bg-card-light: #ffffff;
+  --yfm-bg-card-dark: #1e1e24;
+  --yfm-text-title-light: #0f172a;
+  --yfm-text-title-dark: #f8fafc;
+  --yfm-text-muted-light: #64748b;
+  --yfm-text-muted-dark: #94a3b8;
+  --yfm-border-light: #e2e8f0;
+  --yfm-border-dark: #2e2e38;
+}
+
+/* Base state when Focus Mode is active */
+html[data-yfm-enabled="true"] {
+  --yfm-active: 1;
+}
+
+/* ==========================================================================
+   Shorts Navigation & Feed Hiding
+   ========================================================================== */
+
+/* Hide Shorts tab from left navigation drawer / guide */
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-guide-entry-renderer:has(a[href^="/shorts"]),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-guide-entry-renderer:has(a[title*="Shorts" i]),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-mini-guide-entry-renderer:has(a[title="Shorts"]),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-mini-guide-entry-renderer:has(a[href^="/shorts"]),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-mini-guide-entry-renderer:has(a[title*="Shorts" i]),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytm-pivot-bar-item-renderer:has([aria-label*="Shorts" i]) {
+  display: none !important;
+}
+
+/* Fallback for browsers or YouTube versions without :has support */
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] .yfm-hide-guide-shorts {
+  display: none !important;
+}
+
+/* Hide Shorts shelves anywhere in YouTube */
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-reel-shelf-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-rich-shelf-renderer[is-shorts],
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
+html[data-yfm-enabled="true"][data-yfm-block-shorts="true"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]) {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Direct Shorts Page Blocker Overlay
+   ========================================================================== */
+
+#yfm-shorts-blocker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: #f8fafc;
+  animation: yfmFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes yfmFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.yfm-blocker-card {
+  max-width: 500px;
+  width: 100%;
+  background: #1e1e24;
+  border: 1px solid #2e2e38;
+  border-radius: 16px;
+  padding: 36px 32px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.yfm-blocker-icon-wrap {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+}
+
+.yfm-blocker-icon-wrap svg {
+  width: 32px;
+  height: 32px;
+}
+
+.yfm-blocker-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.yfm-blocker-message {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin: 0 0 28px 0;
+}
+
+.yfm-blocker-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.yfm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  outline: none;
+}
+
+.yfm-btn-primary {
+  background: var(--yfm-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 14px var(--yfm-primary-glow);
+}
+
+.yfm-btn-primary:hover {
+  background: var(--yfm-primary-hover);
+  transform: translateY(-1px);
+}
+
+.yfm-btn-secondary {
+  background: #272730;
+  color: #e2e8f0;
+  border: 1px solid #3f3f4c;
+}
+
+.yfm-btn-secondary:hover {
+  background: #32323e;
+  color: #ffffff;
+}
+
+.yfm-btn-ghost {
+  background: transparent;
+  color: #94a3b8;
+}
+
+.yfm-btn-ghost:hover {
+  color: #f1f5f9;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Complete Block Mode - Overlays & Strict Navigation
+   ========================================================================== */
+
+#yfm-direct-video-blocker,
+#yfm-feed-blocker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: #f8fafc;
+  animation: yfmFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* In Complete Block Mode, hide distracting feed links in the left drawer */
+html[data-yfm-complete-block="true"] ytd-guide-section-renderer:nth-child(n+2),
+html[data-yfm-complete-block="true"] ytd-mini-guide-section-renderer:nth-child(n+2),
+html[data-yfm-complete-block="true"] ytd-guide-entry-renderer:has(a[href*="/feed/"]),
+html[data-yfm-complete-block="true"] ytd-mini-guide-entry-renderer:has(a[href*="/feed/"]) {
+  display: none !important;
+}
+

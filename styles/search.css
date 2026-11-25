@@ -1,0 +1,52 @@
+/**
+ * YouTube Focus Mode - Search Results Styles
+ * Keeps genuine search results clean and removes Shorts shelves, sponsored ads, and algorithmic shelves.
+ */
+
+/* ==========================================================================
+   Search Page Distraction Removal
+   ========================================================================== */
+
+/* 1. Remove Shorts shelves in search results */
+html[data-yfm-enabled="true"][data-yfm-block-search-shorts="true"] ytd-search ytd-reel-shelf-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-search-shorts="true"] ytd-search ytd-rich-shelf-renderer[is-shorts],
+html[data-yfm-enabled="true"][data-yfm-block-search-shorts="true"] ytd-search ytd-section-list-renderer:has(ytd-reel-shelf-renderer),
+html[data-yfm-enabled="true"][data-yfm-block-search-shorts="true"] ytd-search ytd-video-renderer:has(a[href^="/shorts/"]),
+html[data-yfm-enabled="true"][data-yfm-block-search-shorts="true"] ytd-search ytd-video-renderer[data-yfm-is-shorts="true"] {
+  display: none !important;
+}
+
+/* 2. Remove unrelated algorithmic shelves ("People also watched", "For you", "Channels new to you") */
+html[data-yfm-enabled="true"][data-yfm-block-search-shelves="true"] ytd-search ytd-shelf-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-search-shelves="true"] ytd-search ytd-horizontal-card-list-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-search-shelves="true"] ytd-search ytd-exploratory-results-renderer {
+  display: none !important;
+}
+
+/* 3. Remove Ads and sponsored results */
+html[data-yfm-enabled="true"] ytd-search ytd-ad-slot-renderer,
+html[data-yfm-enabled="true"] ytd-search ytd-in-feed-ad-layout-renderer,
+html[data-yfm-enabled="true"] ytd-search ytd-promoted-sparkles-web-renderer,
+html[data-yfm-enabled="true"] ytd-search #promoted-sparkles-web-renderer,
+html[data-yfm-enabled="true"] ytd-search ytd-search-pyv-renderer {
+  display: none !important;
+}
+
+/* 4. Remove secondary distracting search modules (movies, trending sidebars) */
+html[data-yfm-enabled="true"] ytd-search #secondary {
+  display: none !important;
+}
+
+/* 5. Ensure primary search container uses full available width cleanly */
+html[data-yfm-enabled="true"] ytd-search #primary {
+  max-width: 1096px !important;
+}
+
+/* Ensure filter menu and real video results are completely visible and clean */
+ytd-search #filter-menu,
+ytd-search ytd-search-sub-menu-renderer,
+ytd-search ytd-video-renderer:not([data-yfm-is-shorts="true"]),
+ytd-search ytd-channel-renderer,
+ytd-search ytd-playlist-renderer {
+  display: block !important;
+}

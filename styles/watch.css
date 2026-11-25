@@ -1,0 +1,150 @@
+/**
+ * YouTube Focus Mode - Watch Page Styles
+ * Preserves the full video player and core controls while removing related videos, up-next, and end-screens.
+ */
+
+/* ==========================================================================
+   1. Watch Page Related Videos Sidebar Removal
+   ========================================================================== */
+
+html[data-yfm-enabled="true"][data-yfm-block-watch-sidebar="true"] ytd-watch-flexy #secondary,
+html[data-yfm-enabled="true"][data-yfm-block-watch-sidebar="true"] ytd-watch-flexy #secondary-inner,
+html[data-yfm-enabled="true"][data-yfm-block-watch-sidebar="true"] ytd-watch-flexy ytd-watch-next-secondary-results-renderer {
+  display: none !important;
+}
+
+/* Gracefully expand or center primary content when sidebar is removed */
+html[data-yfm-enabled="true"][data-yfm-block-watch-sidebar="true"] ytd-watch-flexy[flexy] #primary.ytd-watch-flexy {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding-right: 0 !important;
+}
+
+html[data-yfm-enabled="true"][data-yfm-block-watch-sidebar="true"] ytd-watch-flexy[flexy] #columns.ytd-watch-flexy {
+  justify-content: center !important;
+}
+
+/* ==========================================================================
+   2. End-screen Recommended Cards & Overlays
+   ========================================================================== */
+
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-element,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-video,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-channel,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-playlist,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-expanding-overlay,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-covering-overlay,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-ce-element-show,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-upnext,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-autonav-endscreen-countdown-overlay,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-autonav-endscreen-button-container,
+html[data-yfm-enabled="true"][data-yfm-block-watch-endscreen="true"] .ytp-cards-teaser {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   3. Configurable Comment Section Hiding
+   ========================================================================== */
+
+html[data-yfm-enabled="true"][data-yfm-hide-comments="true"] ytd-watch-flexy #comments,
+html[data-yfm-enabled="true"][data-yfm-hide-comments="true"] ytd-watch-flexy ytd-comments {
+  display: none !important;
+}
+
+/* ==========================================================================
+   4. Configurable Description Hiding
+   ========================================================================== */
+
+html[data-yfm-enabled="true"][data-yfm-hide-description="true"] ytd-watch-flexy #description,
+html[data-yfm-enabled="true"][data-yfm-hide-description="true"] ytd-watch-flexy ytd-expandable-video-description-body-renderer {
+  display: none !important;
+}
+
+/* ==========================================================================
+   5. In-video info cards icon & chat sidebar (if distracting)
+   ========================================================================== */
+
+html[data-yfm-enabled="true"] ytd-live-chat-frame,
+html[data-yfm-enabled="true"] #chat {
+  display: none !important;
+}
+
+/* ==========================================================================
+   CRITICAL: Ensure player and controls remain 100% visible and interactive
+   ========================================================================== */
+
+ytd-watch-flexy #player,
+ytd-watch-flexy #movie_player,
+ytd-watch-flexy #ytd-player,
+ytd-watch-flexy video.html5-main-video,
+ytd-watch-flexy .ytp-chrome-bottom,
+ytd-watch-flexy .ytp-chrome-top,
+ytd-watch-flexy #above-the-fold {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ==========================================================================
+   Complete Block Mode - Video Ended Overlay ("Video completed. Search for your next topic.")
+   ========================================================================== */
+
+#yfm-video-ended-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: yfmFadeIn 0.25s ease-out forwards;
+}
+
+.yfm-video-ended-card {
+  max-width: 420px;
+  width: 90%;
+  background: #181920;
+  border: 1px solid #2d2f3d;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+
+.yfm-ended-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #34d399;
+}
+
+.yfm-ended-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.yfm-ended-sub {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+.yfm-ended-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+

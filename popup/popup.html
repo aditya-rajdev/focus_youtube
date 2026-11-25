@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Focus Mode</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <img src="../icons/icon48.png" alt="Focus Mode Logo" width="28" height="28">
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">Focus Mode</h1>
+          <span class="brand-tagline">Distraction-Free YouTube</span>
+        </div>
+      </div>
+      <button id="btn-open-options" class="icon-btn" title="Open Full Settings" aria-label="Open Settings">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Master Switch Card -->
+    <div class="master-card" id="master-card">
+      <div class="master-info">
+        <div class="status-indicator" id="status-indicator"></div>
+        <div>
+          <div class="master-label" id="master-status-text">Focus Mode Active</div>
+          <div class="master-sublabel" id="master-sub-text">Distraction shields active</div>
+        </div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-focus-mode" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Complete Block Mode Card (Prominent High-Priority Option) -->
+    <div class="complete-block-card" id="complete-block-card">
+      <div class="complete-block-header">
+        <div class="complete-block-badge">STRICT SEARCH-ONLY</div>
+        <div class="complete-block-status" id="complete-block-status-badge">COMPLETE BLOCK MODE: OFF</div>
+      </div>
+      <div class="complete-block-body">
+        <div class="complete-block-text">
+          <div class="complete-block-title">Complete Block Mode</div>
+          <div class="complete-block-desc">Allow only intentional YouTube searches. Block everything else.</div>
+          <div class="complete-block-active-note" id="complete-block-active-note">Only manually searched videos are accessible.</div>
+        </div>
+        <label class="switch switch-strict">
+          <input type="checkbox" id="toggle-complete-block">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Active Route Badge -->
+    <div class="route-banner" id="route-banner">
+      <span class="route-dot"></span>
+      <span id="route-text">YouTube: Detecting...</span>
+    </div>
+
+    <!-- Section Title -->
+    <div class="section-header">
+      <span id="core-protections-title">Standard Protections</span>
+      <span class="override-badge" id="override-badge">Overridden by Complete Block Mode</span>
+    </div>
+
+    <!-- Protection Toggles List -->
+    <div class="toggles-list" id="standard-toggles-list">
+      <div class="toggle-item">
+        <div class="toggle-meta">
+          <span class="toggle-title">Homepage Feed</span>
+          <span class="toggle-desc">Blocks recommendations & shelf clutter</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-home" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-item">
+        <div class="toggle-meta">
+          <span class="toggle-title">Search Cleanliness</span>
+          <span class="toggle-desc">Hides Shorts & unrelated shelves</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-search" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-item">
+        <div class="toggle-meta">
+          <span class="toggle-title">Watch Page Sidebar</span>
+          <span class="toggle-desc">Removes related video rabbit holes</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-watch-sidebar" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-item">
+        <div class="toggle-meta">
+          <span class="toggle-title">Block YouTube Shorts</span>
+          <span class="toggle-desc">Prevents infinite scrolling feeds</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-shorts" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-item">
+        <div class="toggle-meta">
+          <span class="toggle-title">Hide Video Comments</span>
+          <span class="toggle-desc">For maximum uninterrupted focus</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-comments">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <span class="version-label">v1.1.0</span>
+      <a href="#" id="link-more-options" class="footer-link">More Settings & Shortcut &rarr;</a>
+    </footer>
+
+    <!-- Warning Confirmation Modal for Complete Block Mode -->
+    <div class="warning-modal-backdrop" id="warning-modal">
+      <div class="warning-modal-card">
+        <div class="warning-modal-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+          </svg>
+        </div>
+        <h3 class="warning-modal-title">Enable Complete Block Mode?</h3>
+        <p class="warning-modal-desc">
+          This activates strict search-only mode:
+        </p>
+        <ul class="warning-modal-points">
+          <li>Homepage feeds and shortcuts are completely blocked.</li>
+          <li>Subscriptions and trending feeds are blocked.</li>
+          <li>Direct video links are shielded unless found through search.</li>
+          <li>Autoplay next video is strictly disabled.</li>
+        </ul>
+        <div class="warning-modal-actions">
+          <button type="button" class="btn-modal btn-modal-confirm" id="btn-confirm-complete-block">Enable Strict Mode</button>
+          <button type="button" class="btn-modal btn-modal-cancel" id="btn-cancel-complete-block">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

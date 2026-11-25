@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Focus Mode – Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-layout">
+    <!-- Sidebar navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="../icons/icon48.png" alt="Focus Mode Logo" width="36" height="36">
+        <div>
+          <h1 class="brand-title">YouTube Focus</h1>
+          <span class="brand-badge">PRO SETTINGS</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#general" class="nav-item active">General & Master</a>
+        <a href="#complete-block" class="nav-item">Complete Block Mode</a>
+        <a href="#homepage" class="nav-item">Homepage Feed</a>
+        <a href="#search" class="nav-item">Search Results</a>
+        <a href="#watch" class="nav-item">Watch Page</a>
+        <a href="#shorts" class="nav-item">Shorts & Feed Shields</a>
+        <a href="#about" class="nav-item">About & Shortcuts</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="btn-reset-defaults" class="btn btn-outline-danger">Reset to Defaults</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Status toast notification -->
+      <div id="save-toast" class="toast">Settings saved automatically</div>
+
+      <!-- General Section -->
+      <section id="general" class="settings-section">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">General Settings</h2>
+          <p class="section-subheading">Control the master switch and overall extension behavior.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-master-toggle">Enable YouTube Focus Mode</label>
+              <p class="setting-desc">Master switch to turn on or pause all distraction blocking on YouTube.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-master-toggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Complete Block Mode (Strict Search-Only Mode) Section -->
+      <section id="complete-block" class="settings-section">
+        <div class="section-title-wrap">
+          <div style="display: inline-block; font-size: 11px; font-weight: 800; background: #dc2626; color: white; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px;">STRICT SEARCH-ONLY</div>
+          <h2 class="section-heading">Complete Block Mode</h2>
+          <p class="section-subheading">Allow only intentional YouTube searches. Overrides all other settings when enabled.</p>
+        </div>
+
+        <div class="card" style="border-color: rgba(220, 38, 38, 0.35);">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-complete-block" style="color: #dc2626;">Enable Complete Block Mode</label>
+              <p class="setting-desc">Enforces strict search-only access. The homepage is stripped of all content and shortcuts. Only manually searched videos are accessible.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-complete-block">
+              <span class="slider" style="background-color: var(--border-color);"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-direct-video-policy">Direct Video URLs Policy</label>
+              <p class="setting-desc">Controls behavior when entering a video URL directly instead of finding it through YouTube search.</p>
+            </div>
+            <select id="opt-direct-video-policy" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-weight: 600; font-size: 13px;">
+              <option value="block">Block direct links (Require search)</option>
+              <option value="allow">Allow direct links</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Homepage Section -->
+      <section id="homepage" class="settings-section">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Homepage Protections</h2>
+          <p class="section-subheading">Turn the addictive YouTube home feed into an intentional learning workspace.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-home">Block Homepage Recommendations</label>
+              <p class="setting-desc">Hides the infinite grid of recommended videos, trending chips, and algorithmic shelves, keeping the home feed completely blank.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-home" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Section -->
+      <section id="search" class="settings-section">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Search Results Cleansing</h2>
+          <p class="section-subheading">Ensure search yields only genuine video answers matching your exact query.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-search-shorts">Hide Shorts Shelves in Search</label>
+              <p class="setting-desc">Removes Shorts horizontal carousel rows from search result listings.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-search-shorts" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-search-shelves">Hide Unrelated Algorithmic Shelves</label>
+              <p class="setting-desc">Filters out "People also watched", "For you", and "Previously watched" shelves inserted into search results.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-search-shelves" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Watch Page Section -->
+      <section id="watch" class="settings-section">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Video Watch Page</h2>
+          <p class="section-subheading">Prevent infinite rabbit holes while preserving the complete video player experience.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-watch-sidebar">Hide Related Videos Sidebar</label>
+              <p class="setting-desc">Removes the "Up Next" and suggested videos column on the right side of the video.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-watch-sidebar" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-watch-endscreen">Block End-Screen Cards & Next Video</label>
+              <p class="setting-desc">Blocks pop-up cards that appear at the end of a video suggesting what to watch next.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-watch-endscreen" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-watch-autoplay">Auto-disable Autoplay</label>
+              <p class="setting-desc">Automatically turns off YouTube's autoplay toggle switch so the next video won't auto-start.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-watch-autoplay" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-hide-comments">Hide Comments Section</label>
+              <p class="setting-desc">Removes the comments thread below the video for distraction-free deep viewing.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-hide-comments">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-hide-description">Hide Video Description</label>
+              <p class="setting-desc">Removes the expandable description box beneath the video title.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-hide-description">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shorts Section -->
+      <section id="shorts" class="settings-section">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Shorts & Feed Shields</h2>
+          <p class="section-subheading">Protect yourself from bite-sized infinite scrolling dopamine traps.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-block-shorts">Block Direct Shorts Feeds</label>
+              <p class="setting-desc">If you click or open a /shorts/ URL, audio is paused and a clean Focus Mode screen offers to watch as a normal video or return home.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-block-shorts" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <label class="setting-title" for="opt-hide-sidebar-shorts">Hide Shorts from Navigation Drawer</label>
+              <p class="setting-desc">Removes the Shorts icon and link from the left sidebar and mobile pivot bars.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="opt-hide-sidebar-shorts" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- About & Keyboard Shortcuts -->
+      <section id="about" class="settings-section">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">About & Privacy</h2>
+          <p class="section-subheading">Built with privacy and zero data collection at heart.</p>
+        </div>
+
+        <div class="card">
+          <div class="info-block">
+            <h3>🔒 100% Privacy Focused</h3>
+            <p>
+              YouTube Focus Mode operates entirely within your browser. It collects zero personal data, tracks no browsing history, sends no network telemetry, and uses no external APIs.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>⚡ Performance First</h3>
+            <p>
+              Employs instant CSS-based hiding combined with a lightweight, debounced MutationObserver. No video playback interference, no audio delay, and minimal CPU/memory impact.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

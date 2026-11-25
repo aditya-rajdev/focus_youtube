@@ -1,0 +1,41 @@
+/**
+ * YouTube Focus Mode - Homepage Styles
+ * Hides all algorithmic recommendations on youtube.com while keeping the main feed area completely blank.
+ */
+
+/* ==========================================================================
+   Hide algorithmic feeds & shelves on Homepage
+   ========================================================================== */
+
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] #contents.ytd-rich-grid-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] #primary ytd-rich-grid-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] ytd-rich-section-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] #contents.ytd-section-list-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] ytd-shelf-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] ytd-continuation-item-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] #header.ytd-rich-grid-renderer,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] ytd-item-section-renderer[page-subtype="home"] {
+  display: none !important;
+}
+
+/* Route-level instant zero-flicker blocking on homepage */
+html[data-yfm-enabled="true"][data-yfm-block-home="true"][data-yfm-page="home"] ytd-browse #contents,
+html[data-yfm-enabled="true"][data-yfm-block-home="true"][data-yfm-page="home"] ytd-browse ytd-rich-grid-renderer {
+  display: none !important;
+}
+
+/* Ensure the main feed area is cleanly empty and matches native background */
+html[data-yfm-enabled="true"][data-yfm-block-home="true"] ytd-browse[page-subtype="home"] {
+  background: transparent !important;
+}
+
+/* Ensure top masthead header (logo, search bar, profile icons) remains visible and intact */
+#masthead-container,
+#masthead,
+ytd-searchbox,
+#search-form {
+  display: flex !important;
+  visibility: visible !important;
+}
